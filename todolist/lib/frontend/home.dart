@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:todolist/backend/todolist.dart';
+import 'package:todolist/frontend/bottomSheet.dart';
 import 'package:todolist/frontend/color.dart';
 import 'package:todolist/frontend/todoItems.dart';
 
 class Home extends StatelessWidget {
-   Home({super.key});
+  Home({Key? key}) : super(key: key);
 
   final todosList = ToDo.todoList();
 
@@ -38,8 +39,8 @@ class Home extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(width: 10), // Add spacing between icon and text field
-                Icon(Icons.search), // Add search icon here
+                SizedBox(width: 10), 
+                Icon(Icons.search), 
               ],
             ),
             SizedBox(height: 20),
@@ -59,35 +60,22 @@ class Home extends StatelessWidget {
                       ),
                     ),
                   ),
-                  for(ToDo todo in todosList )
-                  ToDoItems(todo: todo,),
+                  for (ToDo todo in todosList) ToDoItems(todo: todo),
                 ],
               ),
             ),
           ],
         ),
       ),
-    );
-  }
-
-  Widget searchBox() {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-      decoration: BoxDecoration(
-          color: Colors.white, borderRadius: BorderRadius.circular(20)),
-      child: TextField(
-        decoration: InputDecoration(
-          contentPadding: EdgeInsets.all(0),
-          prefixIcon: Icon(
-            Icons.search,
-            color: tdBlack,
-            size: 20,
-          ),
-          prefixIconConstraints: BoxConstraints(maxHeight: 20, minWidth: 25),
-          border: InputBorder.none,
-          hintText: 'Search',
-          hintStyle: TextStyle(color: tdGrey),
+      
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => onPressedAction(context),
+        child: Icon(
+          Icons.add,
+          color: Colors.white,
+          size: 20,
         ),
+        backgroundColor: Color.fromARGB(255, 74, 35, 202),
       ),
     );
   }
@@ -110,7 +98,7 @@ class Home extends StatelessWidget {
             width: 40,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
-              child: Image.asset('.assets/images/avatar.png'),
+              child: Image.asset('assets/images/avatar.png'),
             ),
           )
         ],
